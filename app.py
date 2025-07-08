@@ -109,9 +109,8 @@ if __name__=="__main__":
 
             print(result)
             
-            # # Display result in a more visually appealing way
-            # if result[0] == 0:
-            #     st.error('Siswa dropout', icon="🚨")  # Error with an icon
-            # else:
-            #     st.balloons()  # Show balloons animation
-            #     st.success('Siswa bukan dropout 🎉')  # Success message with emoji
+            # Tampilkan hasil prediksi
+            if result[0] == 1:
+                st.success('Pasien terprediksi **mengidap diabetes**. 🎯')
+            else:
+                st.info('Pasien **tidak terindikasi diabetes**. ✅')
