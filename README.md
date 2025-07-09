@@ -19,8 +19,8 @@ Tujuan dari proyek ini adalah:
 |----------------------|---------------------------------------------------------------------------|
 | `app.py`             | File utama Streamlit Web App                                              |
 | `notebook.ipynb`     | Notebook Jupyter untuk EDA, preprocessing, dan training model             |
-| `diabetes_data.csv`  | Dataset utama yang dianalisis                                             |
-| `diabetes_model.pkl` | Model machine learning hasil pelatihan                                    |
+| `diabetes_data.csv`  | Dataset utama                                                             |
+| `diabetes_model.pkl` | Model machine learning hasil train                                        |
 | `scaler.pkl`         | Objek StandardScaler untuk preprocessing                                  |
 | `README.md`          | Dokumentasi proyek                                                        |
 
@@ -28,9 +28,14 @@ Tujuan dari proyek ini adalah:
 
 ## Menjalankan Aplikasi Streamlit
 
-- Pastikan sudah `app.py` `diabetes_model.pk` dan `scaler.pkl`
-- Pastikan path terminal sudah sesuai dengan path filenya
-- jalankan script ini pada terminal
+Berikut langkah-langkah untuk menjalankan aplikasi secara lokal:
+
+1. Pastikan file berikut sudah tersedia:
+   - `app.py`
+   - `diabetes_model.pkl`
+   - `scaler.pkl`
+2. Buka terminal dan arahkan direktori kerja ke folder yang berisi file tersebut.
+3. Jalankan perintah berikut di terminal:
 
 ```
 streamlit run app.py
@@ -78,13 +83,30 @@ pip install pandas numpy matplotlib seaborn joblib imbalanced-learn scikit-learn
 
 ---
 
-## Kesimpulan
+## Train Model
 
-* Glukosa adalah faktor paling berpengaruh terhadap Outcome dibanding faktor yang lain.
-* Faktor keturunan (`DiabetesPedigreeFunction`) meskipun tidak memiliki korelasi yang tinggi, tetapi perlu diperhatikan juga, karena dari banyak riwayat yang terjadi, banyak berkontribusi pada risiko.
-* Model prediktif yang dibuat dan di integrasikan menggunakan library `streamlit`, dapat digunakan sebagai alat bantu untuk mempermudah diagnosis awal diabetes.
+Proses pelatihan model dilakukan dengan membandingkan beberapa algoritma machine learning.
+
+Setiap model diuji menggunakan teknik validasi silang (`StratifiedKFold`) dan metrik evaluasi seperti **accuracy**, **precision**, **recall**, **F1-score**, dan **ROC-AUC** untuk memastikan performa yang adil dan menyeluruh.
+
+Setelah dibandingkan, model dengan performa terbaik adalah **Neural Network (Multi-layer Perceptron)** yang mampu menghasilkan akurasi tinggi dalam mengklasifikasikan pasien dengan dan tanpa diabetes.
+
+Berikut adalah hasil **Confusion Matrix** dari model terbaik tersebut:
+
+![Confusion Matrix - Neural Network](images/chart_5.png)
+
+Model yang telah dilatih kemudian disimpan dalam format `.pkl` dan diintegrasikan ke dalam aplikasi berbasis Streamlit, sehingga dapat digunakan untuk prediksi secara langsung oleh pengguna.
+
 ---
 
-## Kontribusi
+## Kesimpulan
 
-Proyek ini dikembangkan oleh [Ahmad Farhan (iniparhan)](https://github.com/iniparhan) sebagai bagian dari pembelajaran data science dan penerapan machine learning di bidang kesehatan.
+Berdasarkan hasil eksplorasi data dan analisis yang dilakukan, dapat disimpulkan bahwa:
+
+- **Kadar glukosa (Glucose)** merupakan faktor yang paling dominan dalam menentukan `Outcome` (terdiagnosis diabetes atau tidak). Hal ini terlihat dari korelasi yang kuat serta distribusi nilai glukosa yang jauh lebih tinggi pada pasien dengan diabetes dibandingkan yang tidak.
+  
+- **Faktor keturunan**, yang direpresentasikan melalui `DiabetesPedigreeFunction`, memang tidak menunjukkan korelasi linear yang tinggi terhadap `Outcome`. Namun demikian, faktor ini tetap penting untuk diperhatikan, karena secara historis, banyak kasus diabetes ditemukan pada pasien dengan riwayat keluarga yang serupa. Dengan kata lain, meskipun tidak dominan secara statistik, faktor keturunan tetap memberikan kontribusi terhadap risiko diabetes.
+
+- Model prediktif yang dikembangkan dalam proyek ini, dan telah diintegrasikan dalam antarmuka web menggunakan **Streamlit**, dapat berfungsi sebagai **alat bantu diagnosis awal**. Aplikasi ini memungkinkan pengguna, baik praktisi medis maupun non-teknis, untuk melakukan prediksi secara cepat dan mudah berdasarkan input fitur dasar seperti jumlah kehamilan, kadar glukosa, BMI, usia, dan riwayat keturunan.
+
+Diharapkan repositori ini dapat digunakan sebagai langkah awal untuk deteksi dini risiko diabetes, sebelum dilakukan pemeriksaan lebih lanjut oleh tenaga medis profesional.
