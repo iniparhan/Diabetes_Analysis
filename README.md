@@ -2,16 +2,12 @@
 
 Repositori ini berisi sistem analisis dan prediksi diabetes menggunakan machine learning. Proyek ini mencakup proses pembersihan data, eksplorasi, pelatihan model, hingga visualisasi berbasis web dengan Streamlit.
 
----
-
 ## Penjelasan Program
 
 Tujuan dari proyek ini adalah:
 - Menganalisis faktor-faktor medis yang memengaruhi kemungkinan seseorang mengidap diabetes.
 - Membangun model prediksi diabetes dari fitur seperti jumlah kehamilan, kadar glukosa, BMI, usia, dll.
 - Menyediakan visualisasi pengguna berbasis Streamlit untuk hasil prediksi.
-
----
 
 ## Struktur File dan Fungsinya
 
@@ -23,8 +19,6 @@ Tujuan dari proyek ini adalah:
 | `diabetes_model.pkl` | Model machine learning hasil train                                        |
 | `scaler.pkl`         | Objek StandardScaler untuk preprocessing                                  |
 | `README.md`          | Dokumentasi proyek                                                        |
-
----
 
 ## Menjalankan Aplikasi Streamlit
 
@@ -50,8 +44,6 @@ python -m streamlit run app.py
 Atau versi streamlit online :
 
 🔗 [Link Streamlit App](https://diabetes-analysis-farhanqf.streamlit.app/)
-
----
 
 ## Instalasi Library
 
@@ -81,8 +73,6 @@ pip install pandas numpy matplotlib seaborn joblib imbalanced-learn scikit-learn
 
 ![Distribusi Usia dengan Glukosa](images/chart_3.png)
 
----
-
 ## Train Model
 
 Proses pelatihan model dilakukan dengan membandingkan beberapa algoritma machine learning.
@@ -96,8 +86,6 @@ Berikut adalah hasil **Confusion Matrix** dari model terbaik tersebut:
 ![Confusion Matrix - Neural Network](images/chart_5.png)
 
 Model yang telah dilatih kemudian disimpan dalam format `.pkl` dan diintegrasikan ke dalam aplikasi berbasis Streamlit, sehingga dapat digunakan untuk prediksi secara langsung oleh pengguna.
-
----
 
 ## Kesimpulan
 
